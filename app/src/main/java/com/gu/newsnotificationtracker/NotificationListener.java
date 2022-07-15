@@ -1,6 +1,7 @@
 package com.gu.newsnotificationtracker;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
@@ -14,14 +15,16 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "I have bound");
+        Log.i(TAG, "***************I have bound");
         return super.onBind(intent);
     }
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
         // Implement what you want here
-        Log.i(TAG, "A notification happened!");
+        String message = sbn.getNotification().toString();
+        String packageName = sbn.getPackageName();
+        Log.i(TAG, "***************A notification happened! package name:" + packageName + " message:" + message  );
     }
 
 }

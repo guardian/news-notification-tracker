@@ -1,5 +1,6 @@
 package com.gu.newsnotificationtracker;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +23,14 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
         // Implement what you want here
-        String message = sbn.getNotification().toString();
+
+        Notification notification = sbn.getNotification();
+        String message = notification.toString();
+        String tickerText = notification.tickerText.toString();
         String packageName = sbn.getPackageName();
         Log.i(TAG, "***************A notification happened! package name:" + packageName + " message:" + message  );
+        Log.i(TAG, "ticker:" + tickerText);
+        Log.i(TAG, "extras:" + notification.extras);
     }
 
 }
